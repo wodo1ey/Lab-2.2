@@ -1,0 +1,36 @@
+//Дан односвязный линейный список и указатель на голову списка. Необходимо вставить значение M после каждого третьего элемента
+//списка, и вывести ссылку на последний элемент полученного списка.
+
+#include "pt4.h"
+using namespace std;
+
+void Solve()
+{
+    Task("ListWork23");
+    int i = 1, m;
+    PNode ptr;
+    pt >> m >> ptr;
+    while (ptr->Next != nullptr)
+    {
+        ptr = ptr->Next;
+        i++;
+        if (i == 3)
+        {
+            PNode insert = new TNode;
+            insert->Data = m;
+            insert->Next = ptr->Next;
+            if (ptr->Next == nullptr)
+            {
+                ptr->Next = insert;
+                ptr = insert;
+            }
+            else
+            {
+                ptr->Next = insert;
+                ptr = insert->Next;
+                i = 1;
+            }
+        }
+    }
+    pt << ptr;
+}
